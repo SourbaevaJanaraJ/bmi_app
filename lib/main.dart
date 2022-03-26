@@ -1,7 +1,8 @@
+import 'package:bmi_app/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'home_view.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,13 +18,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData.dark().copyWith( 
-      primaryColor: Color(0xff0b0e21),
+      primaryColor: AppColors.bGColor,
       // accentColor: Colors.blueGrey,
-      scaffoldBackgroundColor: Color(0xff0b0e21),
+      scaffoldBackgroundColor: AppColors.bGColor,
       ),
   
     
-      home: HomeView(),
+      home: HomeScreen(),
     );
   }
 }

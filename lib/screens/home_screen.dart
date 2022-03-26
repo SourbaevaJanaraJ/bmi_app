@@ -1,25 +1,24 @@
 
-import 'package:bmi_app/bottom_button.dart';
-import 'package:bmi_app/calculator_brain.dart';
-import 'package:bmi_app/constants.dart';
-import 'package:bmi_app/weight_age_widget.dart';
+import 'package:bmi_app/constants/app_textstyles.dart';
+import 'package:bmi_app/constants/constants.dart';
+import 'package:bmi_app/widgets/bottom_button.dart';
+import 'package:bmi_app/repository/bmi_calculator_repo.dart';
+import 'package:bmi_app/widgets/weight_age_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'result_screen.dart';
+import '../widgets/icon_widget.dart';
+import '../widgets/reusablecard.dart';
 
 
-import 'result_page.dart';
-import 'iconcontent.dart';
-import 'reusablecard.dart';
-
-
-class HomeView extends StatefulWidget {
-  HomeView({Key key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  HomeScreen({Key key}) : super(key: key);
 
   @override
-  _HomeViewState createState() => _HomeViewState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeScreenState extends State<HomeScreen> {
 int height = 110; 
 int weight = 40;
 int age = 15;
@@ -29,7 +28,7 @@ Gender gender;
     return Scaffold(
       
       appBar: AppBar(
-        backgroundColor: Color(0xff0b0e21),
+        backgroundColor: AppColors.bGColor,
         title: Text('BMI Calculator'.toUpperCase()),
       ),
       body: Column(
@@ -45,9 +44,9 @@ Gender gender;
                       });
                     },
                     bgColor: gender == Gender.male
-                    ? kActiveCardColour
-                    : kInactiveCardColour,
-                    child: const IconContent(
+                    ? AppColors.kActiveCardColour
+                    : AppColors.kInactiveCardColour,
+                    child: const IconWidget(
                       text: 'MALE',
                       icon: FontAwesomeIcons.mars,
                     ),
@@ -61,9 +60,9 @@ Gender gender;
                 });
               },
               bgColor: gender == Gender.female
-                    ? kActiveCardColour
-                    : kInactiveCardColour,
-              child:const IconContent(
+                    ? AppColors.kActiveCardColour
+                    : AppColors.kInactiveCardColour,
+              child:const IconWidget(
                 icon: FontAwesomeIcons.venus,
                 text: 'FEMALE',
                 ),
@@ -74,13 +73,13 @@ Gender gender;
           ),
           Expanded(
             child: ReusableCard(
-              bgColor: cardBGColor,
+              bgColor: AppColors.cardBGColor,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     'HEIGHT', 
-                    style: sliderTextStyle,
+                    style: AppTextstyles.sliderTextStyle,
                      ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -89,11 +88,11 @@ Gender gender;
                     children: <Widget>[
                       Text(
                         height.toString(),
-                        style: sliderNoTextStyle,
+                        style: AppTextstyles.sliderNoTextStyle,
                       ),
-                      Text(
+                      const Text(
                         'cm',
-                      style: sliderTextStyle,
+                      style: AppTextstyles.sliderTextStyle,
                       ),
                     ],
                   ),
@@ -101,12 +100,12 @@ Gender gender;
                     data: SliderTheme.of(context).copyWith(
                       activeTrackColor: Colors.white,
                       inactiveTrackColor: Color(0xFF8D8E98),
-                      thumbColor: Color(0xFFEB1555),
-                      overlayColor: Color(0x29EB1555),
+                      thumbColor: AppColors.thumbColor,
+                      overlayColor: AppColors.overlayColor,
                       thumbShape:
-                          RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                          const RoundSliderThumbShape(enabledThumbRadius: 15.0),
                       overlayShape:
-                          RoundSliderOverlayShape(overlayRadius: 30.0),
+                          const RoundSliderOverlayShape(overlayRadius: 30.0),
                     ),
                     child: Slider(
                       value: height.toDouble(),
@@ -128,7 +127,7 @@ Gender gender;
               children: [
                 Expanded(
                   child: ReusableCard(
-                    bgColor: cardBGColor,
+                    bgColor: AppColors.cardBGColor,
                     child: WeightAgeWidget(
                       isKG: true,
                       minus: (){
@@ -147,7 +146,7 @@ Gender gender;
                 
                  Expanded(
             child: ReusableCard(
-            bgColor: cardBGColor,
+            bgColor: AppColors.cardBGColor,
             child: WeightAgeWidget(
               minus: (){
                         age--;
@@ -166,12 +165,12 @@ Gender gender;
          ),
          BottomButton(
            onTap: () {
-             CalculatorBrain calc =
-                  CalculatorBrain(height: height, weight: weight);
+             BmiCalculatorRepo calc =
+                  BmiCalculatorRepo(height: height, weight: weight);
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ResultPage(
+                      builder: (context) => ResultScreen(
                             bmiResult: calc.calculateBMI(),
                             resultText: calc.getResult(),
                             interpretation: calc.getInterpretation(),

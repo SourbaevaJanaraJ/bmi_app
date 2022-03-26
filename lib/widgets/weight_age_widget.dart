@@ -1,8 +1,9 @@
-import 'package:bmi_app/round_icon_button.dart';
+import 'package:bmi_app/constants/app_textstyles.dart';
+import 'package:bmi_app/widgets/round_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'constants.dart';
+
 
 class WeightAgeWidget extends StatelessWidget {
   final String text;
@@ -25,7 +26,7 @@ class WeightAgeWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(text, style: sliderTextStyle,), 
+        Text(text, style: AppTextstyles.sliderTextStyle,), 
       isKG 
       ?  Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -33,13 +34,13 @@ class WeightAgeWidget extends StatelessWidget {
                     textBaseline: TextBaseline.alphabetic,
           children: [
             Text(number.toString(), 
-            style: sliderNoTextStyle,
+            style: AppTextstyles.sliderNoTextStyle,
             ),
-            Text(' kg'),
+            const Text(' kg'),
           ],
         )
         : Text(number.toString(), 
-            style: sliderNoTextStyle,
+            style: AppTextstyles.sliderNoTextStyle,
             ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -48,7 +49,7 @@ class WeightAgeWidget extends StatelessWidget {
               onPressed: minus,
               icon: FontAwesomeIcons.minus,
               ),
-              SizedBox(width: 10.0,),
+              const SizedBox(width: 10.0,),
               RoundIconButton(
               onPressed: plus,
               icon: FontAwesomeIcons.plus,

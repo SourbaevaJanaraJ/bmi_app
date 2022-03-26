@@ -1,9 +1,13 @@
+import 'package:bmi_app/constants/app_textstyles.dart';
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
+import '../constants/constants.dart';
 
 class BottomButton extends StatelessWidget {
-  BottomButton({@required this.onTap, @required this.buttonTitle});
+   BottomButton({
+     @required this.onTap,
+     @required this.buttonTitle
+     });
 
   final Function onTap;
   final String buttonTitle;
@@ -16,12 +20,12 @@ class BottomButton extends StatelessWidget {
         child: Center(
           child: Text(
             buttonTitle,
-            style: kLargeButtonTextStyle,
+            style:  AppTextstyles.kLargeButtonTextStyle,
           ),
         ),
-        color: kBottomContainerColour,
-        margin: EdgeInsets.only(top: 10.0),
-        padding: EdgeInsets.only(bottom: 20.0),
+        color: AppColors.kBottomContainerColour,
+        margin: const EdgeInsets.only(top: 10.0),
+        padding: const EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
         height: kBottomContainerHeight,
       ),

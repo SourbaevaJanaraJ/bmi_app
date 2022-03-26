@@ -1,12 +1,13 @@
+import 'package:bmi_app/constants/app_textstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'constants.dart';
 
-class IconContent extends StatelessWidget {
+
+class IconWidget extends StatelessWidget {
   final IconData icon;
   final String text;
-  const IconContent({
+  const IconWidget({
     Key key,
     @required this.icon,
     @required this.text,
@@ -23,14 +24,10 @@ class IconContent extends StatelessWidget {
       ),
     Text(
     text, 
-    style: iconTextStyle
+    style: AppTextstyles.iconTextStyle
     ),
       ],
                   );
   }
 }
 
-TextStyle iconTextStyle = TextStyle(
-fontSize: 45, 
-color: Colors.grey
-);

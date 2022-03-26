@@ -5,13 +5,13 @@ int height = 180;
   double maxHeight = 220;
 
 
-class CalculatorBrain {
+class BmiCalculatorRepo {
   final int height;
   final int weight;
 
   double _bmi;
 
-  CalculatorBrain({this.height, this.weight});
+  BmiCalculatorRepo({this.height, this.weight});
 
   String calculateBMI() {
     _bmi = weight / pow(height / 100, 2);
